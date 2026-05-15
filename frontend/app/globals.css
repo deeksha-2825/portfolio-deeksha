@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050816;
+  --foreground: #f5f7ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+::selection {
+  background: rgba(103, 232, 249, 0.25);
+  color: #ffffff;
+}
+
+.portfolio-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 90px 90px;
+  mask-image: radial-gradient(circle at center, black 38%, transparent 100%);
+}
+
+.portfolio-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.9;
+  animation: drift 14s ease-in-out infinite;
+}
+
+.portfolio-glow-a {
+  top: -8rem;
+  left: -6rem;
+  width: 22rem;
+  height: 22rem;
+  background: rgba(56, 189, 248, 0.18);
+}
+
+.portfolio-glow-b {
+  top: 10rem;
+  right: -7rem;
+  width: 24rem;
+  height: 24rem;
+  background: rgba(168, 85, 247, 0.14);
+  animation-delay: -4s;
+}
+
+.portfolio-glow-c {
+  bottom: -9rem;
+  left: 30%;
+  width: 20rem;
+  height: 20rem;
+  background: rgba(14, 165, 233, 0.1);
+  animation-delay: -8s;
+}
+
+.portfolio-card {
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(125, 211, 252, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(24px, -18px, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-glow {
+    animation: none;
+  }
+
+  .portfolio-card {
+    transition: none;
+  }
+}
