@@ -419,7 +419,7 @@ export default function Home() {
           >
             <Reveal>
               <h2 className="text-3xl font-bold tracking-tight text-white mb-6 flex items-center gap-3">
-                 <FolderGit2 className="h-8 w-8 text-blue-400" /> Selected Works
+                 <FolderGit2 className="h-8 w-8 text-blue-400" /> Project Works
               </h2>
             </Reveal>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
