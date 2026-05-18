@@ -39,16 +39,6 @@ body {
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 90px 90px;
   mask-image: radial-gradient(circle at center, black 38%, transparent 100%);
-  animation: grid-move 20s linear infinite;
-}
-
-@keyframes grid-move {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 90px 90px;
-  }
 }
 
 .portfolio-glow {
