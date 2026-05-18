@@ -78,11 +78,11 @@ const projects = [
   {
     title: "Ecommerce Application And Deployment Using AWS",
     description:
-      "Ecommerce application built with React, Node.js, and MongoDB, deployed on AWS for scalable hosting and storage.",
+      "Ecommerce application built and deployed on AWS for scalable hosting and storage.",
     github: "https://github.com/deeksha-2825/ecommerce-application.git",
   },
   {
-    title: "Clinical Decision Support System Of Cervical Intraepithelial Neoplasia Using Machine Learrning",
+    title: "Clinical Decision Support System Of Cervical Intraepithelial Neoplasia Using Machine Learning",
     description:
       "Machine Learning model built to detect Cervical Intraepithelial Neoplasia (CIN).",
     github: "https://github.com/deeksha-2825/A-clinical-decision-support-system-of-cervical-intraepithelial-neoplasia-clinic-diagnosis.git",
@@ -96,7 +96,7 @@ const projects = [
   {
     title: "Opentelemetry Application using Docker and Kubernetes",
     description:
-      "Opentelemetry application deployed using Docker and Kubernetes for monitoring and observability",
+      "Opentelemetry application deployed using Docker and Kubernetes for monitoring and observability.",
     github: "https://github.com/deeksha-2825/opentelemetry-kubernetes.git",
   },
   {
@@ -111,7 +111,7 @@ const TABS = ["home", "experience", "education", "projects"] as const;
 type TabId = typeof TABS[number];
 
 // Reusable scroll reveal animation component
-function Reveal({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
+function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number, className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -138,7 +138,7 @@ function Reveal({ children, delay = 0 }: { children: ReactNode; delay?: number }
       ref={ref}
       className={`transition-all duration-1000 ease-out ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-      }`}
+      } ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -422,30 +422,32 @@ export default function Home() {
                  <FolderGit2 className="h-8 w-8 text-blue-400" /> Selected Works
               </h2>
             </Reveal>
-            {projects.map((item, idx) => (
-              <Reveal key={idx} delay={idx * 150}>
-                <article
-                  className="portfolio-card group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl hover:bg-white/[0.07] transition-colors duration-500"
-                >
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.12),transparent_40%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="relative z-10">
-                    <h3 className="text-2xl font-semibold text-white tracking-tight">{item.title}</h3>
-                    <p className="mt-4 leading-relaxed text-white/70 font-light max-w-2xl">{item.description}</p>
-                    <div className="mt-8 flex items-center gap-3">
-                      <a
-                        href={item.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/40 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:text-cyan-300 hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)]"
-                      >
-                        <FolderGit2 className="h-4 w-4" />
-                        View Source
-                      </a>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {projects.map((item, idx) => (
+                <Reveal key={idx} delay={idx * 150} className="h-full">
+                  <article
+                    className="portfolio-card h-full flex flex-col group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl hover:bg-white/[0.07] transition-colors duration-500"
+                  >
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.12),transparent_40%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="relative z-10 flex flex-col flex-1">
+                      <h3 className="text-xl font-semibold text-white tracking-tight">{item.title}</h3>
+                      <p className="mt-4 leading-relaxed text-white/70 font-light max-w-2xl flex-1">{item.description}</p>
+                      <div className="mt-8 flex items-center gap-3">
+                        <a
+                          href={item.github}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/40 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:text-cyan-300 hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)]"
+                        >
+                          <FolderGit2 className="h-4 w-4" />
+                          View Source
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </section>
         
         </div>
