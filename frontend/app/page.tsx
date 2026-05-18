@@ -169,24 +169,25 @@ export default function Home() {
 
   // Setup intersection observer to track which section is currently active while scrolling
   useEffect(() => {
-    const rootMargin = "-20% 0px -60% 0px"; // Triggers closer to the top of the viewport
-
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the visible section
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute("id") as TabId;
-            if (id && TABS.includes(id)) {
-               setActiveTab(id);
-            }
+        // Filter elements that are currently intersecting
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+        
+        if (visibleEntries.length > 0) {
+          // If multiple are visible, pick the first one
+          const id = visibleEntries[0].target.getAttribute("id") as TabId;
+          if (id && TABS.includes(id)) {
+            setActiveTab(id);
           }
         }
       },
-      { 
-        root: containerRef.current, 
-        rootMargin, 
-        threshold: 0.1 
+      {
+        root: containerRef.current,
+        // Require the top of the element to reach the top 30% of the viewport to trigger, 
+        // and detach before it leaves the bottom 60%.
+        rootMargin: "-30% 0px -60% 0px", 
+        threshold: 0,
       }
     );
 
