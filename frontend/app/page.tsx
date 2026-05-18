@@ -76,22 +76,34 @@ const education = [
 
 const projects = [
   {
-    title: "Automated Anomaly Detection",
+    title: "Ecommerce Application And Deployment Using AWS",
     description:
-      "A pipeline for parsing large OpenStack log streams and surfacing anomalies before they affect service reliability.",
-    github: "https://github.com/your-username/anomaly-detection",
+      "Ecommerce application built with React, Node.js, and MongoDB, deployed on AWS for scalable hosting and storage.",
+    github: "https://github.com/deeksha-2825/ecommerce-application.git",
   },
   {
-    title: "Bank Account Management",
+    title: "Clinical Decision Support System Of Cervical Intraepithelial Neoplasia Using Machine Learrning",
     description:
-      "An object-oriented system with custom withdrawal logic and concurrency-aware account closure behavior.",
-    github: "https://github.com/your-username/bank-system",
+      "Machine Learning model built to detect Cervical Intraepithelial Neoplasia (CIN)",
+    github: "https://github.com/deeksha-2825/A-clinical-decision-support-system-of-cervical-intraepithelial-neoplasia-clinic-diagnosis.git",
   },
   {
-    title: "Student Gradebook",
+    title: "Doctor Appointment Booking System Deployment Using Kubernetes",
     description:
-      "A Python and SQLite application built to keep academic records structured, fast, and easy to query.",
-    github: "https://github.com/your-username/gradebook",
+      "An application for booking doctor appointments deployed using Kubernetes",
+    github: "https://github.com/deeksha-2825/doctor-office-application.git",
+  },
+  {
+    title: "Opentelemetry Application using Docker and Kubernetes",
+    description:
+      "Opentelemetry application deployed using Docker and Kubernetes for monitoring and observability",
+    github: "https://github.com/deeksha-2825/opentelemetry-kubernetes.git",
+  },
+  {
+    title: "Other Projects",
+    description:
+      "For other projects, please visit my GitHub profile.",
+    github: "https://github.com/deeksha-2825",
   },
 ];
 
