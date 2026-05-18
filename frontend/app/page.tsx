@@ -84,13 +84,13 @@ const projects = [
   {
     title: "Clinical Decision Support System Of Cervical Intraepithelial Neoplasia Using Machine Learrning",
     description:
-      "Machine Learning model built to detect Cervical Intraepithelial Neoplasia (CIN)",
+      "Machine Learning model built to detect Cervical Intraepithelial Neoplasia (CIN).",
     github: "https://github.com/deeksha-2825/A-clinical-decision-support-system-of-cervical-intraepithelial-neoplasia-clinic-diagnosis.git",
   },
   {
     title: "Doctor Appointment Booking System Deployment Using Kubernetes",
     description:
-      "An application for booking doctor appointments deployed using Kubernetes",
+      "An application for booking doctor appointments deployed using Kubernetes.",
     github: "https://github.com/deeksha-2825/doctor-office-application.git",
   },
   {
