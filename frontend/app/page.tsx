@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, ReactNode } from "react";
 import { Home as HomeIcon, Briefcase, GraduationCap, FolderGit2, ExternalLink, Mail } from "lucide-react";
 
 const summary =
-  "I am an AI and Cloud Infrastructure Engineer with 4+ years of experience bridging ML Engineering, MLOps, and SRE. Building and deploying production-grade ML systems on AWS. Proven impact: cut federal compliance check time by 90% via Agentic AI pipelines, achieved 92% anomaly detection precision, maintained 99.99% availability for provider-level hybrid cloud and reduced MTTR by 25% across multi-cloud IaaS. Uniquely positioned at the intersection of AI/ML engineering and cloud reliability.";
+  "I am an AI and Cloud Engineer with 4+ years of experience bridging ML Engineering, MLOps, and SRE. Building and deploying production-grade ML systems on AWS. Proven impact: cut federal compliance check time by 90% via Agentic AI pipelines, achieved 92% anomaly detection precision, maintained 99.99% availability for provider-level hybrid cloud and reduced MTTR by 25% across multi-cloud IaaS. Uniquely positioned at the intersection of AI/ML engineering and cloud reliability.";
 
 const experience = [
   {
