@@ -32,7 +32,7 @@ const experience = [
       "",
       bullets: [
         "Engineered an automated research proposal review pipeline using Agentic AI, RAG, and OCR (AWS Textract, Bedrock), reducing federal compliance check time by 90% and mitigating the risk of funding cancellations.",
-        "Built a production-grade NLP translation pipeline, achieving 97% accuracy to enhance cross-lingual research.",
+        "Built a production-grade NLP translation pipeline, achieving BLEU score of 44 to enhance cross-lingual research.",
         "Delivered proactive GCP cloud support eliminating critical system downtime for stakeholders.",
         "Evaluated the use of cutting edge AI tools and frameworks to enhance research funding opportunity discovery and compliance processes.",
         "As a TA, I directed technical training for 60+ engineers on Docker and Kubernetes orchestration.",
