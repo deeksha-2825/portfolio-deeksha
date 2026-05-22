@@ -295,7 +295,7 @@ export default function Home() {
       {/* Main Content Area (Scrollable container) */}
       <div 
         ref={containerRef}
-        className="relative z-20 flex-1 w-full h-full overflow-y-auto scroll-smooth"
+        className="relative z-20 flex-1 w-full overflow-y-auto scroll-smooth min-h-0"
       >
          <div className="mx-auto max-w-4xl px-4 sm:px-12 lg:px-16 flex flex-col gap-y-24 lg:gap-y-32 py-12 lg:py-24 pb-32 lg:pb-48">
         
