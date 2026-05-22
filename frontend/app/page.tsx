@@ -149,6 +149,7 @@ function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabId>("home");
   const containerRef = useRef<HTMLDivElement>(null);
+  const isScrollingRef = useRef(false);
 
   // Keep track of section elements
   const sectionRefs = useRef<Record<TabId, HTMLElement | null>>({
@@ -161,9 +162,24 @@ export default function Home() {
   // Smooth scroll to a section on click
   const scrollToSection = (id: TabId) => {
     setActiveTab(id);
+    isScrollingRef.current = true;
+    
     const element = sectionRefs.current[id];
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    const container = containerRef.current;
+    
+    if (element && container) {
+      // Use scrollTo on the container directly instead of scrollIntoView()
+      // This prevents mobile browsers from erroneously shifting the entire page layout 
+      // or "losing" the fixed navigation menu at the top.
+      container.scrollTo({
+        top: element.offsetTop - 24, // subtract small offset for breathing room
+        behavior: "smooth",
+      });
+
+      // Reset the scrolling flag after smooth scroll is expected to finish
+      setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 1000);
     }
   };
 
@@ -171,6 +187,8 @@ export default function Home() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        if (isScrollingRef.current) return; // Skip updating active tab if user clicked navigation
+        
         // Filter elements that are currently intersecting
         const visibleEntries = entries.filter((entry) => entry.isIntersecting);
         
@@ -201,22 +219,25 @@ export default function Home() {
   const NavButton = ({ id, icon: Icon, label }: { id: TabId, icon: any, label: string }) => (
     <button
       onClick={() => scrollToSection(id)}
-      className={`group relative flex w-full items-center gap-4 rounded-2xl px-5 py-4 transition-all duration-500 ease-out ${
+      className={`group relative flex items-center gap-2 lg:gap-4 rounded-2xl px-4 py-3 lg:px-5 lg:py-4 transition-all duration-500 ease-out whitespace-nowrap lg:w-full ${
         activeTab === id
           ? "bg-white/10 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
           : "text-white/50 hover:bg-white/5 hover:text-white/90"
       }`}
     >
       {activeTab === id && (
-         <div className="absolute left-0 top-1/2 h-8 w-1 -translate-y-1/2 rounded-r-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.8)]" />
+        <>
+          <div className="hidden lg:block absolute left-0 top-1/2 h-8 w-1 -translate-y-1/2 rounded-r-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.8)]" />
+          <div className="lg:hidden absolute bottom-0 left-1/2 h-1 w-8 -translate-x-1/2 rounded-t-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.8)]" />
+        </>
       )}
-      <Icon className={`h-5 w-5 transition-transform duration-500 ${activeTab === id ? "scale-110 text-cyan-300" : "group-hover:scale-110"}`} />
-      <span className="text-sm font-medium tracking-wide">{label}</span>
+      <Icon className={`h-4 w-4 lg:h-5 lg:w-5 transition-transform duration-500 ${activeTab === id ? "scale-110 text-cyan-300" : "group-hover:scale-110"}`} />
+      <span className="text-xs lg:text-sm font-medium tracking-wide">{label}</span>
     </button>
   );
 
   return (
-    <main className="relative h-screen max-h-screen overflow-hidden bg-[#050816] text-white flex flex-col lg:flex-row">
+    <main className="relative h-[100dvh] max-h-[100dvh] overflow-hidden bg-[#050816] text-white flex flex-col lg:flex-row">
       {/* Background ambient animations */}
       <div className="portfolio-grid absolute inset-0 opacity-20 pointer-events-none" />
       <div className="portfolio-glow portfolio-glow-a pointer-events-none" />
@@ -224,27 +245,41 @@ export default function Home() {
       <div className="portfolio-glow portfolio-glow-c pointer-events-none" />
 
       {/* Cinematic Sidebar (Fixed) */}
-      <aside className="relative z-30 w-full border-b border-white/5 bg-black/40 backdrop-blur-2xl lg:w-80 lg:border-b-0 lg:border-r lg:h-screen flex flex-col justify-between p-8 xl:p-10 shadow-[20px_0_40px_rgba(0,0,0,0.4)] shrink-0">
-        <div>
+      <aside className="relative z-30 w-full border-b border-white/5 bg-black/40 backdrop-blur-2xl lg:w-80 lg:border-b-0 lg:border-r lg:h-[100dvh] flex flex-col justify-between p-4 sm:p-6 lg:p-8 xl:p-10 shadow-[20px_0_40px_rgba(0,0,0,0.4)] shrink-0">
+        <div className="flex flex-col md:flex-row lg:flex-col md:items-center lg:items-start gap-4 lg:gap-0">
            {/* Sidebar Brand / Identity */}
-           <div className="mb-12 animate-in slide-in-from-left-8 duration-700 fade-in">
-             <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_24px_rgba(34,211,238,0.4)] mb-6">
+           <div className="animate-in slide-in-from-left-8 duration-700 fade-in md:flex-1 lg:flex-none lg:mb-12">
+             <div className="hidden lg:flex h-12 w-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 items-center justify-center shadow-[0_0_24px_rgba(34,211,238,0.4)] mb-6">
                 <span className="text-xl font-bold text-white tracking-widest">DR</span>
              </div>
-             <h1 className="text-2xl font-bold tracking-tight text-white mb-2">Deeksha<br/>Ramakrishna</h1>
-             <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/60 font-semibold mb-6">AI and Cloud Infrastructure Engineer</p>
+             
+             <div className="flex items-center gap-3 lg:hidden mb-3">
+                 <div className="h-10 w-10 shrink-0 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_24px_rgba(34,211,238,0.4)]">
+                    <span className="text-base font-bold text-white tracking-widest">DR</span>
+                 </div>
+                 <div className="flex-1 min-w-0">
+                    <h1 className="text-lg sm:text-2xl font-bold tracking-tight text-white mb-0.5 truncate">Deeksha Ramakrishna</h1>
+                    <p className="text-[9px] sm:text-xs uppercase tracking-[0.1em] text-cyan-200/60 font-semibold truncate xl:max-w-full">AI and Cloud Infrastructure Engineer</p>
+                 </div>
+             </div>
+
+             <div className="hidden lg:block">
+               <h1 className="text-2xl font-bold tracking-tight text-white mb-2">Deeksha<br/>Ramakrishna</h1>
+               <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/60 font-semibold mb-6">AI and Cloud Infrastructure Engineer</p>
+             </div>
+
              <a 
                href="/resume.pdf" 
                target="_blank" 
                rel="noreferrer" 
-               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-2.5 text-xs font-semibold tracking-wide text-white transition-all hover:bg-white/10 hover:text-cyan-300 hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] w-fit"
+               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 lg:px-6 py-2 lg:py-2.5 text-[10px] lg:text-xs font-semibold tracking-wide text-white transition-all hover:bg-white/10 hover:text-cyan-300 hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] w-fit"
              >
                View Resume
              </a>
            </div>
 
            {/* Navigation */}
-           <nav className="flex flex-col gap-2 animate-in slide-in-from-left-8 duration-700 delay-150 fade-in fill-mode-both">
+           <nav className="flex flex-row py-1 -mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto lg:overflow-visible lg:flex-col gap-2 lg:gap-2 animate-in slide-in-from-left-8 duration-700 delay-150 fade-in fill-mode-both md:flex-1 lg:flex-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <NavButton id="home" icon={HomeIcon} label="Home" />
               <NavButton id="experience" icon={Briefcase} label="Experience" />
               <NavButton id="education" icon={GraduationCap} label="Education" />
@@ -262,16 +297,16 @@ export default function Home() {
         ref={containerRef}
         className="relative z-20 flex-1 w-full h-full overflow-y-auto scroll-smooth"
       >
-         <div className="mx-auto max-w-4xl px-6 sm:px-12 lg:px-16 flex flex-col gap-y-32 py-24 pb-48">
+         <div className="mx-auto max-w-4xl px-4 sm:px-12 lg:px-16 flex flex-col gap-y-24 lg:gap-y-32 py-12 lg:py-24 pb-32 lg:pb-48">
         
           {/* HOME SECTION */}
           <section 
             id="home" 
             ref={el => { sectionRefs.current.home = el; }} 
-            className="flex flex-col justify-center gap-8 min-h-[60vh] scroll-mt-24 py-12"
+            className="flex flex-col justify-center gap-6 lg:gap-8 min-h-[50vh] lg:min-h-[60vh] scroll-mt-24 py-8 lg:py-12"
           >
             <Reveal delay={100}>
-              <div className="inline-flex items-center gap-3 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-cyan-300 backdrop-blur-md w-fit shadow-[0_0_20px_rgba(34,211,238,0.15)]">
+              <div className="inline-flex items-center gap-3 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-[10px] sm:text-xs font-medium uppercase tracking-[0.2em] text-cyan-300 backdrop-blur-md w-fit shadow-[0_0_20px_rgba(34,211,238,0.15)]">
                  <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
@@ -280,20 +315,20 @@ export default function Home() {
               </div>
             </Reveal>
             <Reveal delay={200}>
-              <h2 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl leading-[1.1]">
-                Scalling <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Intelligence,</span> <br/>Engineering Reliability.
+              <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1] sm:leading-[1.1] lg:leading-[1.1]">
+                Scaling <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Intelligence,</span> <br className="hidden sm:block" />Engineering Reliability.
               </h2>
             </Reveal>
             <Reveal delay={300}>
-              <p className="max-w-2xl text-lg leading-relaxed text-white/60 font-light">
+              <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-white/60 font-light">
                 {summary}
               </p>
             </Reveal>
             <Reveal delay={400}>
-              <div className="mt-4 flex flex-wrap items-center gap-6">
+              <div className="mt-4 flex flex-wrap items-center gap-4 lg:gap-6">
                  <button 
                    onClick={() => scrollToSection("experience")}
-                   className="rounded-full bg-white text-black px-8 py-4 text-sm font-semibold tracking-wide hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+                   className="rounded-full bg-white text-black px-6 lg:px-8 py-3 lg:py-4 text-sm font-semibold tracking-wide hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)]"
                  >
                    View My Background
                  </button>
@@ -347,24 +382,24 @@ export default function Home() {
                   className="portfolio-card group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl hover:bg-white/[0.07] transition-colors duration-500"
                 >
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.08),transparent_40%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="relative z-10 flex flex-col justify-between sm:flex-row sm:items-start gap-4 border-b border-white/5 pb-6">
-                    <div>
-                      <h3 className="text-2xl font-semibold text-white tracking-tight">{item.role}</h3>
+                  <div className="relative z-10 flex flex-col sm:flex-row justify-between sm:items-start gap-4 border-b border-white/5 pb-6">
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">{item.role}</h3>
                       {/* @ts-ignore */}
                       {(item as any).companyUrl ? (
-                        <a href={(item as any).companyUrl} target="_blank" rel="noopener noreferrer" className="mt-2 text-sm font-medium uppercase tracking-widest text-cyan-300/80 hover:text-cyan-100 hover:underline transition-all inline-flex items-center gap-1 group/link w-fit">
+                        <a href={(item as any).companyUrl} target="_blank" rel="noopener noreferrer" className="mt-2 text-xs sm:text-sm font-medium uppercase tracking-widest text-cyan-300/80 hover:text-cyan-100 hover:underline transition-all inline-flex items-center gap-1 group/link w-fit">
                           {item.company}
                           <ExternalLink className="h-3 w-3 opacity-50 group-hover/link:opacity-100 transition-opacity" />
                         </a>
                       ) : (
-                        <p className="mt-2 text-sm font-medium uppercase tracking-widest text-cyan-300/80">{item.company}</p>
+                        <p className="mt-2 text-xs sm:text-sm font-medium uppercase tracking-widest text-cyan-300/80">{item.company}</p>
                       )}
                     </div>
-                    <span className="shrink-0 rounded-full border border-white/10 bg-black/40 px-4 py-1.5 text-xs font-medium tracking-wider text-white/60 shadow-inner">
+                    <span className="shrink-0 rounded-full border border-white/10 bg-black/40 px-3 lg:px-4 py-1 lg:py-1.5 text-[10px] lg:text-xs font-medium tracking-wider text-white/60 shadow-inner w-fit">
                       {item.duration}
                     </span>
                   </div>
-                  <p className="relative z-10 mt-6 leading-relaxed text-white/70 font-light text-base">
+                  <p className="relative z-10 mt-6 leading-relaxed text-white/70 font-light text-sm sm:text-base">
                     {item.description}
                   </p>
                   {/* @ts-ignore */}
@@ -399,11 +434,11 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.08),transparent_40%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative z-10 flex flex-col justify-between sm:flex-row sm:items-center gap-4">
-                    <div>
-                      <h3 className="text-2xl font-semibold text-white tracking-tight">{item.degree}</h3>
-                      <p className="mt-2 text-sm font-medium uppercase tracking-widest text-fuchsia-300/80">{item.school}</p>
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">{item.degree}</h3>
+                      <p className="mt-2 text-xs sm:text-sm font-medium uppercase tracking-widest text-fuchsia-300/80">{item.school}</p>
                     </div>
-                    <span className="shrink-0 rounded-full border border-white/10 bg-black/40 px-4 py-1.5 text-xs font-medium tracking-wider text-white/60 shadow-inner">
+                    <span className="shrink-0 rounded-full border border-white/10 bg-black/40 px-3 lg:px-4 py-1 lg:py-1.5 text-[10px] lg:text-xs font-medium tracking-wider text-white/60 shadow-inner w-fit">
                       {item.year}
                     </span>
                   </div>
@@ -427,18 +462,18 @@ export default function Home() {
               {projects.map((item, idx) => (
                 <Reveal key={idx} delay={idx * 150} className="h-full">
                   <article
-                    className="portfolio-card h-full flex flex-col group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur-xl hover:bg-white/[0.07] transition-colors duration-500"
+                    className="portfolio-card h-full flex flex-col group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur-xl hover:bg-white/[0.07] transition-colors duration-500"
                   >
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,165,233,0.12),transparent_40%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     <div className="relative z-10 flex flex-col flex-1">
-                      <h3 className="text-xl font-semibold text-white tracking-tight">{item.title}</h3>
-                      <p className="mt-4 leading-relaxed text-white/70 font-light max-w-2xl flex-1">{item.description}</p>
+                      <h3 className="text-lg sm:text-xl font-semibold text-white tracking-tight">{item.title}</h3>
+                      <p className="mt-4 leading-relaxed text-white/70 font-light max-w-2xl flex-1 text-sm sm:text-base">{item.description}</p>
                       <div className="mt-8 flex items-center gap-3">
                         <a
                           href={item.github}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/40 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:text-cyan-300 hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)]"
+                          className="inline-flex items-center gap-2 lg:gap-3 rounded-full border border-white/20 bg-black/40 px-4 lg:px-5 py-2 lg:py-2.5 text-xs lg:text-sm font-medium text-white transition-all hover:bg-white/10 hover:text-cyan-300 hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)]"
                         >
                           <FolderGit2 className="h-4 w-4" />
                           View Source
