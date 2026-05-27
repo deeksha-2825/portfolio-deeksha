@@ -267,15 +267,6 @@ export default function Home() {
                <h1 className="text-2xl font-bold tracking-tight text-white mb-2">Deeksha<br/>Ramakrishna</h1>
                <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/60 font-semibold mb-6">AI and Cloud Infrastructure Engineer</p>
              </div>
-
-             <a 
-               href="/resume.pdf" 
-               target="_blank" 
-               rel="noreferrer" 
-               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 lg:px-6 py-2 lg:py-2.5 text-[10px] lg:text-xs font-semibold tracking-wide text-white transition-all hover:bg-white/10 hover:text-cyan-300 hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] w-fit"
-             >
-               View Resume
-             </a>
            </div>
 
            {/* Navigation */}
