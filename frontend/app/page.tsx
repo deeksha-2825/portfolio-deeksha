@@ -19,7 +19,7 @@ const experience = [
         "Architected and deployed a 0-to-1 end-to-end ML- driven trading strategy and sentiment analysis pipeline, deployed to AWS.",
         "Designed a low-latency options trading infrastructure using Terraform, Docker, and Kubernetes for zero-downtime execution in AWS.",
         "Engineered an end-to-end ML- driven trading strategy and sentiment analysis pipeline, deployed to AWS.",
-        "Developed Python and Bash automation scripts for data ingestion and service releases to run strategy logic",
+        "Developed Python and Bash automation scripts for data ingestion and service releases to run strategy logic.",
         "Maintaining optimal infrastructure health via Linux administration, performance tuning, and Prometheus/Grafana observability pipelines.",
         "Maintaining reliable CI/CD pipelines using GitHub Actions for seamless IaC updates and service rollouts.",
       ],
@@ -50,7 +50,7 @@ const experience = [
       bullets: [
         "Maintained a hybrid multi-cloud IaaS (OpenStack, AWS S3) using Ansible and Terraform, ensuring 99.99% availability for enterprise tenants; configured and managed Linux-based KVM/QEMU hypervisors.",
         "Provisioned and maintained bare-metal servers with OS installations, OpenStack configurations (Nova, Cinder, Neutron), system patching, OS upgrades, and capacity planning.",
-        "Pioneered the company’s first ML initiative: designed an end-to-end automated anomaly detection system for platform logs achieving 92% precision over baseline methods.",
+        "Pioneered the company’s first (0-to-1) ML initiative: designed an end-to-end automated anomaly detection system for platform logs achieving 92% precision over baseline methods.",
         "Expanded provider-level observability via Prometheus queries and Grafana dashboards/alerts; tracked SLIs/SLOs, reducing MTTR by 25%.",
         "Troubleshooting platform-level network connectivity and DNS failures across tenant environments using standard Linux diagnostic tools.",
         "Participated in on-call rotations and blameless post-mortems; wrote Python/Bash automation for operational tooling and maintained platform-wide CI/CD pipelines to reduce toil."
