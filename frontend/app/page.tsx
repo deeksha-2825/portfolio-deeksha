@@ -2,19 +2,21 @@
 
 import { useEffect, useRef, useState, ReactNode } from "react";
 import { Home as HomeIcon, Briefcase, GraduationCap, FolderGit2, ExternalLink, Mail } from "lucide-react";
+import ChatBot from "./components/ChatBot";
 
 const summary =
-  "I am an AI and Cloud Engineer with 4+ years of experience bridging ML Engineering, MLOps, and SRE. Building and deploying production-grade ML systems on AWS. Proven impact: cut federal compliance check time by 90% via Agentic AI pipelines, achieved 92% anomaly detection precision, maintained 99.99% availability for provider-level hybrid cloud and reduced MTTR by 25% across multi-cloud IaaS. Uniquely positioned at the intersection of AI/ML engineering and cloud reliability.";
+  "I am an Engineer with 5+ years of experience bridging ML Engineering, MLOps, SRE, Cloud Infrastructure and Techincal Support and Conuslting. I am architecting 0-to-1 production-grade ML systems on AWS, GCP. Proven impact: cut federal compliance check time by 90% via Agentic AI pipelines, achieved 92% anomaly detection precision, maintained 99.99% availability for provider-level hybrid cloud and reduced MTTR by 25% across multi-cloud IaaS. Uniquely positioned at the intersection of AI/ML engineering and cloud reliability.";
 
 const experience = [
   {
-    role: "AI and Cloud Infrastructure Engineer",
+    role: "AI and ML Engineer",
     company: "Eleftheria Capital, Atlanta, GA",
     companyUrl: "https://elefcap.com",
     duration: "Jan 2026 - Present",
     description:
       "",
       bullets: [
+        "Architected and deployed a 0-to-1 end-to-end ML- driven trading strategy and sentiment analysis pipeline, deployed to AWS.",
         "Designed a low-latency options trading infrastructure using Terraform, Docker, and Kubernetes for zero-downtime execution in AWS.",
         "Engineered an end-to-end ML- driven trading strategy and sentiment analysis pipeline, deployed to AWS.",
         "Developed Python and Bash automation scripts for data ingestion and service releases to run strategy logic",
@@ -24,7 +26,7 @@ const experience = [
 
   },
   {
-    role: "Machine Learning Engineer and Teaching Assistant",
+    role: "Machine Learning Engineer",
     company: "University of Maryland, College Park, MD",
     companyUrl: "https://it.umd.edu/",
     duration: "Feb 2024 - Dec 2025",
@@ -35,7 +37,7 @@ const experience = [
         "Built a production-grade NLP translation pipeline, achieving BLEU score of 44 to enhance cross-lingual research.",
         "Delivered proactive GCP cloud support eliminating critical system downtime for stakeholders.",
         "Evaluated the use of cutting edge AI tools and frameworks to enhance research funding opportunity discovery and compliance processes.",
-        "As a TA, I directed technical training for 60+ engineers on Docker and Kubernetes orchestration.",
+        "Directed technical training for 60+ engineers on Docker and Kubernetes orchestration.",
         ],
   },
   {
@@ -52,6 +54,18 @@ const experience = [
         "Expanded provider-level observability via Prometheus queries and Grafana dashboards/alerts; tracked SLIs/SLOs, reducing MTTR by 25%.",
         "Troubleshooting platform-level network connectivity and DNS failures across tenant environments using standard Linux diagnostic tools.",
         "Participated in on-call rotations and blameless post-mortems; wrote Python/Bash automation for operational tooling and maintained platform-wide CI/CD pipelines to reduce toil."
+      ],
+  },
+  {
+    role: "Technical Support Engineer",
+    company: "SAP LABS (Ariba Sourcing), India, Bangalore",
+    companyUrl: "https://www.sap.com/products/business-network/suppliers/promote-subscription.html",
+    duration: "Mar 2019 - Apr 2020",
+    description:
+      "",
+      bullets: [
+        "Supported Fortune 500 clients on SAP Ariba Sourcing under strict enterprise SLAs (1-hr acknowledgment / 4-hr L2 / 12-hr L3), directly accountable to client success managers for procurement-critical incidents.",
+        "Reduced repeat incident volume 30% by building an internal knowledge base of root cause patterns and resolution playbooks, cutting escalation time across the support team."
       ],
   },
 ];
@@ -243,6 +257,9 @@ export default function Home() {
       <div className="portfolio-glow portfolio-glow-a pointer-events-none" />
       <div className="portfolio-glow portfolio-glow-b pointer-events-none" />
       <div className="portfolio-glow portfolio-glow-c pointer-events-none" />
+
+      {/* AI Chat Agent */}
+      <ChatBot />
 
       {/* Cinematic Sidebar (Fixed) */}
       <aside className="relative z-30 w-full border-b border-white/5 bg-black/40 backdrop-blur-2xl lg:w-80 lg:border-b-0 lg:border-r lg:h-[100dvh] flex flex-col justify-between p-4 sm:p-6 lg:p-8 xl:p-10 shadow-[20px_0_40px_rgba(0,0,0,0.4)] shrink-0">
