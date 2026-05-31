@@ -333,7 +333,7 @@ export default function ChatBot() {
         >
           {voiceMode
             ? <><Square size={14} className="shrink-0" /> Stop</>
-            : <><Mic    size={14} className="shrink-0" /> Proto - Talk To Me</>}
+            : <><Mic    size={14} className="shrink-0" /> Porto AI - Talk To Me</>}
         </button>
 
         {/* Chat button */}
