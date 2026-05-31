@@ -106,3 +106,15 @@ body {
     transition: none;
   }
 }
+
+/* Voice equalizer bars */
+@keyframes voiceBar {
+  from { transform: scaleY(0.25); }
+  to   { transform: scaleY(1.0);  }
+}
+
+/* Chat scrollbar */
+.chat-scrollbar::-webkit-scrollbar { width: 4px; }
+.chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.chat-scrollbar::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.15); border-radius: 99px; }
+.chat-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(34,211,238,0.3); }

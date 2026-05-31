@@ -74,17 +74,14 @@ const education = [
   {
     degree: "Master of Engineering in Cloud Engineering",
     school: "University of Maryland, College Park",
-    year: "2024 - 2025",
   },
   {
-    degree: "Master of Science in Data and Knowledge Engineering(Applied ML)",
+    degree: "Master of Science in Data and Knowledge Engineering (Applied ML)",
     school: "Otto Von Guericke University, Magdeburg, Germany",
-    year: "2019 - 2023",
   },
   {
     degree: "Bachelor of Engineering in Computer Science and Engineering",
     school: "Dr. Ambedkar Institute of Technology, India",
-    year: "2013 - 2017",
   },
 ];
 
@@ -446,9 +443,6 @@ export default function Home() {
                       <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">{item.degree}</h3>
                       <p className="mt-2 text-xs sm:text-sm font-medium uppercase tracking-widest text-fuchsia-300/80">{item.school}</p>
                     </div>
-                    <span className="shrink-0 rounded-full border border-white/10 bg-black/40 px-3 lg:px-4 py-1 lg:py-1.5 text-[10px] lg:text-xs font-medium tracking-wider text-white/60 shadow-inner w-fit">
-                      {item.year}
-                    </span>
                   </div>
                 </article>
               </Reveal>
