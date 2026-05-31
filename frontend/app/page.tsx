@@ -279,7 +279,7 @@ export default function Home() {
 
              <div className="hidden lg:block">
                <h1 className="text-2xl font-bold tracking-tight text-white mb-2">Deeksha<br/>Ramakrishna</h1>
-               <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/60 font-semibold mb-6">AI and Cloud Infrastructure Engineer</p>
+               <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/60 font-semibold mb-6">AI and Cloud Engineer</p>
              </div>
            </div>
 
