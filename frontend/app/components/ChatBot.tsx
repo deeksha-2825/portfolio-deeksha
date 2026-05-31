@@ -174,6 +174,19 @@ export default function ChatBot() {
 
     if (!voiceModeRef.current) return;
 
+    // Detect supported audio format (iOS Safari only supports mp4, not webm)
+    const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
+      ? "audio/webm;codecs=opus"
+      : MediaRecorder.isTypeSupported("audio/webm")
+      ? "audio/webm"
+      : "audio/mp4";
+    const fileExt = mimeType.includes("mp4") ? "mp4" : "webm";
+
+    // Tell backend which format we'll be sending
+    if (wsRef.current?.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify({ format: fileExt }));
+    }
+
     // Start audio capture
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
@@ -203,7 +216,7 @@ export default function ChatBot() {
         if (!recordingRef.current) {
           recordingRef.current = true;
           setVoiceStatus("listening");
-          const rec = new MediaRecorder(stream);
+          const rec = new MediaRecorder(stream, { mimeType });
           mediaRecorderRef.current = rec;
           rec.ondataavailable = (e) => {
             if (e.data.size > 0 && wsRef.current?.readyState === WebSocket.OPEN && voiceModeRef.current)
