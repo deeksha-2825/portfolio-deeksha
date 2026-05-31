@@ -323,9 +323,9 @@ export default function ChatBot() {
         </div>
       )}
 
-      {/* Voice status card — visible while voice mode is active */}
+      {/* Voice status card — desktop only */}
       {voiceMode && (
-        <div className="flex flex-col items-center gap-3 px-6 py-4 rounded-2xl border border-white/10 bg-[#040d1c]/97 shadow-[0_0_40px_rgba(14,165,233,0.15)] backdrop-blur-xl animate-in fade-in duration-300 min-w-[200px]">
+        <div className="hidden md:flex flex-col items-center gap-3 px-6 py-4 rounded-2xl border border-white/10 bg-[#040d1c]/97 shadow-[0_0_40px_rgba(14,165,233,0.15)] backdrop-blur-xl animate-in fade-in duration-300 min-w-[200px]">
           <p className="text-[10px] uppercase tracking-widest text-white/40 font-semibold">Deeksha&apos;s AI</p>
           <VoiceBars status={voiceStatus} />
           <p className="text-xs text-white/60">{statusLabel}</p>
@@ -335,10 +335,10 @@ export default function ChatBot() {
       {/* Action buttons */}
       <div className="flex gap-2.5">
 
-        {/* Voice button */}
+        {/* Voice button — desktop only */}
         <button
           onClick={toggleVoice}
-          className={`flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold transition-all shadow-lg hover:scale-105 active:scale-95 ${
+          className={`hidden md:flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold transition-all shadow-lg hover:scale-105 active:scale-95 ${
             voiceMode
               ? "bg-red-500 hover:bg-red-600 text-white shadow-[0_0_20px_rgba(239,68,68,0.4)]"
               : "bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:opacity-90 shadow-[0_0_20px_rgba(14,165,233,0.3)]"
@@ -346,7 +346,7 @@ export default function ChatBot() {
         >
           {voiceMode
             ? <><Square size={14} className="shrink-0" /> Stop</>
-            : <><Mic    size={14} className="shrink-0" /> Porto AI - Talk To Me</>}
+            : <><Mic    size={14} className="shrink-0" /> Talk to me</>}
         </button>
 
         {/* Chat button */}
