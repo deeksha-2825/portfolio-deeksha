@@ -5,11 +5,11 @@ import { Home as HomeIcon, Briefcase, GraduationCap, FolderGit2, ExternalLink, M
 import ChatBot from "./components/ChatBot";
 
 const summary =
-  "I am an Engineer with 5+ years of experience bridging ML Engineering, MLOps, SRE, Cloud Infrastructure and Techincal Support and Conuslting. I am architecting 0-to-1 production-grade ML systems on AWS, GCP. Proven impact: cut federal compliance check time by 90% via Agentic AI pipelines, achieved 92% anomaly detection precision, maintained 99.99% availability for provider-level hybrid cloud and reduced MTTR by 25% across multi-cloud IaaS. Uniquely positioned at the intersection of AI/ML engineering and cloud reliability.";
+  "I am an Engineer with 5+ years of experience bridging ML Engineering, MLOps, SRE, Cloud Infrastructure and Techincal Support and Conuslting. I have architected 0-to-1 production-grade ML systems on AWS, GCP. Proven impact: cut federal compliance check time by 90% via Agentic AI pipelines, achieved 92% anomaly detection precision, maintained 99.99% availability for provider-level hybrid cloud and reduced MTTR by 25% across multi-cloud IaaS. Uniquely positioned at the intersection of AI/ML engineering and cloud reliability.";
 
 const experience = [
   {
-    role: "AI and ML Engineer",
+    role: "Founding Engineer",
     company: "Eleftheria Capital, Atlanta, GA",
     companyUrl: "https://elefcap.com",
     duration: "Jan 2026 - Present",
@@ -26,7 +26,7 @@ const experience = [
 
   },
   {
-    role: "Machine Learning Engineer",
+    role: "Graduate Assistant (ML and Cloud Engineer)",
     company: "University of Maryland, College Park, MD",
     companyUrl: "https://it.umd.edu/",
     duration: "Feb 2024 - Dec 2025",
@@ -41,6 +41,17 @@ const experience = [
         ],
   },
   {
+    role: "Machine Learning Thesis Researcher",
+    company: "SysEleven GmBH, Berlin, Germany",
+    companyUrl: "https://www.syseleven.de/en/",
+    duration: "Jul 2021 - Dec 2023",
+    description:
+      "",
+      bullets: [
+        "Designed 0-to-1 log anomaly detection system on real OpenStack production data with log parsing (Drain, Regex), word embeddings, dimensionality reduction, feature engineering, LSTM/Bi-LSTM, and ensemble methods (Isolation Forest, COPOD, ECOD) achieving 92% precision, 90% recall over individual baseline models.",
+      ],
+  },
+  {
     role: "Site Reliability Engineer",
     company: "SysEleven GmBH, Berlin, Germany",
     companyUrl: "https://www.syseleven.de/en/",
@@ -50,7 +61,6 @@ const experience = [
       bullets: [
         "Maintained a hybrid multi-cloud IaaS (OpenStack, AWS S3) using Ansible and Terraform, ensuring 99.99% availability for enterprise tenants; configured and managed Linux-based KVM/QEMU hypervisors.",
         "Provisioned and maintained bare-metal servers with OS installations, OpenStack configurations (Nova, Cinder, Neutron), system patching, OS upgrades, and capacity planning.",
-        "Pioneered the company’s first (0-to-1) ML initiative: designed an end-to-end automated anomaly detection system for platform logs achieving 92% precision over baseline methods.",
         "Expanded provider-level observability via Prometheus queries and Grafana dashboards/alerts; tracked SLIs/SLOs, reducing MTTR by 25%.",
         "Troubleshooting platform-level network connectivity and DNS failures across tenant environments using standard Linux diagnostic tools.",
         "Participated in on-call rotations and blameless post-mortems; wrote Python/Bash automation for operational tooling and maintained platform-wide CI/CD pipelines to reduce toil."
@@ -279,7 +289,7 @@ export default function Home() {
 
              <div className="hidden lg:block">
                <h1 className="text-2xl font-bold tracking-tight text-white mb-2">Deeksha<br/>Ramakrishna</h1>
-               <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/60 font-semibold mb-6">AI and Cloud Engineer</p>
+               <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/60 font-semibold mb-6">AI/ML and Cloud Engineer</p>
              </div>
            </div>
 
