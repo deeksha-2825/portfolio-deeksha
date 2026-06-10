@@ -44,7 +44,7 @@ const experience = [
     role: "Machine Learning Engineer",
     company: "SysEleven GmBH, Berlin, Germany",
     companyUrl: "https://www.syseleven.de/en/",
-    duration: "Jul 2021 - Dec 2023",
+    duration: "Mar 2022 - Apr 2023",
     description:
       "",
       bullets: [
