@@ -27,7 +27,7 @@ const experience = [
   },
   {
     role: "Machine Learning Engineer",
-    company: "University of Maryland, College Park, MD",
+    company: "SPARCS and MAGE, University of Maryland, College Park, MD",
     companyUrl: "https://it.umd.edu/",
     duration: "Feb 2024 - Dec 2025",
     description:
