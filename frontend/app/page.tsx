@@ -26,7 +26,7 @@ const experience = [
 
   },
   {
-    role: "Graduate Assistant (ML and Cloud Engineer)",
+    role: "Machine Learning Engineer",
     company: "University of Maryland, College Park, MD",
     companyUrl: "https://it.umd.edu/",
     duration: "Feb 2024 - Dec 2025",
@@ -41,7 +41,7 @@ const experience = [
         ],
   },
   {
-    role: "Machine Learning Thesis Researcher",
+    role: "Machine Learning Engineer",
     company: "SysEleven GmBH, Berlin, Germany",
     companyUrl: "https://www.syseleven.de/en/",
     duration: "Jul 2021 - Dec 2023",
