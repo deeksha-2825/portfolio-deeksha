@@ -26,7 +26,7 @@ const experience = [
 
   },
   {
-    role: "Machine Learning Engineer",
+    role: "Machine Learning and Cloud Engineer",
     company: "SPARCS and MAGE, University of Maryland, College Park, MD",
     companyUrl: "https://it.umd.edu/",
     duration: "Feb 2024 - Dec 2025",
@@ -41,7 +41,7 @@ const experience = [
         ],
   },
   {
-    role: "Machine Learning Engineer",
+    role: "Machine Learning Infra Engineer",
     company: "SysEleven GmBH, Berlin, Germany",
     companyUrl: "https://www.syseleven.de/en/",
     duration: "Mar 2022 - Apr 2023",
