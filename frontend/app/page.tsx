@@ -26,7 +26,7 @@ const experience = [
 
   },
   {
-    role: "Machine Learning and Cloud Engineer",
+    role: "AI and Cloud Infrastructure Engineer",
     company: "SPARCS and MAGE, University of Maryland, College Park, MD",
     companyUrl: "https://it.umd.edu/",
     duration: "Feb 2024 - Dec 2025",
