@@ -5,7 +5,7 @@ import { Home as HomeIcon, Briefcase, GraduationCap, FolderGit2, ExternalLink, M
 import ChatBot from "./components/ChatBot";
 
 const summary =
-  "I am an Engineer with 5+ years of experience bridging Infrastructure, Site Reliability Engineering, ML Ops, ML Engineering. I have architected 0-to-1 production-grade ML systems on AWS, GCP. Proven impact: cut federal compliance check time by 90% via Agentic AI pipelines, achieved 92% anomaly detection precision, maintained 99.99% availability for provider-level hybrid cloud and reduced MTTR by 25% across multi-cloud IaaS. Uniquely positioned at the intersection of AI/ML engineering and cloud reliability.";
+  "I am an Engineer with experience in bridging Infrastructure, Site Reliability Engineering, ML Ops, ML Engineering. I have architected 0-to-1 production-grade ML systems on AWS, GCP. Proven impact: cut federal compliance check time by 90% via Agentic AI pipelines, achieved 92% anomaly detection precision, maintained 99.99% availability for provider-level hybrid cloud and reduced MTTR by 25% across multi-cloud IaaS. Uniquely positioned at the intersection of AI/ML engineering and cloud reliability.";
 
 const experience = [
   {
